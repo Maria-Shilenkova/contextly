@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maria Shilenkova — MOTION & VISUAL DESIGNER</title>
+<style>
+  :root{
+    --bg:#f2f0e9;
+    --ink:#111;
+    --muted:#777;
+    --line:#171717;
+    --accent:#e7ff32;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+    font-size:14px;line-height:1.35;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1500px;margin:auto;padding:0 22px}
+  header{
+    height:64px;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    position:sticky;top:0;background:rgba(242,240,233,.94);backdrop-filter:blur(10px);z-index:10;
+  }
+  .brand{font-weight:800;letter-spacing:-.04em}
+  nav{display:flex;gap:24px;text-transform:uppercase;font-size:11px}
+  nav a:hover{text-decoration:underline}
+  .hero{
+    min-height:calc(100vh - 100px);display:grid;grid-template-columns:1.35fr .65fr;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-main{padding:8vh 0 7vh;display:flex;flex-direction:column;justify-content:space-between}
+  .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+  h1{
+    margin:0;max-width:1100px;font-size:clamp(64px,11vw,170px);
+    line-height:.82;letter-spacing:-.09em;font-weight:800;
+  }
+  .hero-copy{max-width:620px;font-size:18px;line-height:1.25;margin-top:36px}
+  .hero-side{border-left:1px solid var(--line);padding:22px;display:flex;flex-direction:column;justify-content:flex-end}
+  .signal{
+    aspect-ratio:1;border:1px solid var(--line);display:grid;place-items:center;
+    background:var(--accent);font-size:12px;text-align:center;text-transform:uppercase;
+  }
+  .signal::before{content:"";width:42%;aspect-ratio:1;border:1px solid var(--line);border-radius:50%}
+  .meta{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px}
+  .meta div{border-top:1px solid var(--line);padding-top:8px}
+ .section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  padding:8px 0;
+  border-bottom:1px solid var(--line);
+  text-transform:uppercase;
+  font-size:11px;
+}
+
+section{
+  scroll-margin-top:64px;
+}
+  .apps{display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--line)}
+  .card{
+    min-height:390px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:14px;display:flex;flex-direction:column;justify-content:space-between;
+    transition:.2s ease;background:var(--bg);
+  }
+  .card:hover{background:#ffffff}
+  .num{font-size:10px;color:var(--muted)}
+  .project-img{
+    width:100%;aspect-ratio:1.2;display:block;object-fit:cover;
+    border:1px solid var(--line);background:#dedbd0;
+    letter-spacing:-.08em;font-weight:800;
+  }
+  .card:nth-child(3n) .project-img{border-radius:50%}
+  .card:nth-child(4n) .project-img{border-radius:18px}
+  .app-title{font-size:24px;letter-spacing:-.06em;margin-top:12px}
+  .app-type{font-size:10px;text-transform:uppercase;color:var(--muted)}
+  .featured{grid-column:span 2;min-height:520px;background:#171717;color:#f2f0e9}
+  .featured .project-img{background:var(--accent);color:#111;border-color:#f2f0e9}
+  .featured:hover{background:#171717}
+  .featured .app-type{color:#aaa}
+  .about{
+    display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line);
+    min-height:420px;
+  }
+  .about > div{padding:22px}
+  .about > div+div{border-left:1px solid var(--line)}
+  .about h2{font-size:clamp(40px,6vw,90px);line-height:.85;letter-spacing:-.08em;margin:0 0 40px}
+  .about p{max-width:620px;font-size:18px}
+  .facts{display:grid;align-content:end;gap:0}
+  .fact{border-top:1px solid var(--line);padding:12px 0;display:flex;justify-content:space-between}
+  footer{display:flex;justify-content:space-between;gap:20px;padding:22px 0;font-size:11px;text-transform:uppercase}
+  .empty-note{color:var(--muted);font-size:10px;margin-top:5px}
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr}
+    .hero-side{border-left:0;border-top:1px solid var(--line);min-height:420px}
+    .directions{grid-template-columns:repeat(2,1fr)}
+    
+    .about{grid-template-columns:1fr}
+    .about > div+div{border-left:0;border-top:1px solid var(--line)}
+  }
+  @media(max-width:520px){
+    .wrap{padding:0 12px}
+    nav{gap:10px}
+    .hero-main{padding-top:48px}
+    h1{font-size:20vw}
+    .directions{grid-template-columns:1fr}
+    .featured{grid-column:span 1}
+    .card{min-height:330px}
+  }
+
+  .directions{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border-left:1px solid var(--line);
+  }
+  .direction-card{
+    height:460px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:14px;display:grid;grid-template-rows:24px 1fr auto;
+    gap:14px;background:var(--bg);transition:.2s ease;
+  }
+  .direction-card:hover{background:#fff}
+  .direction-top{
+    display:flex;justify-content:space-between;font-size:10px;color:var(--muted);
+    text-transform:uppercase;
+  }
+  .direction-img{
+    display:none;
+  }
+  .direction-bottom{border-top:1px solid var(--line);padding-top:12px;margin-top:14px}
+  .direction-bottom h3{
+    margin:0;font-size:28px;line-height:.95;letter-spacing:-.06em;font-weight:800;
+  }
+  .direction-bottom p{
+    margin:10px 0 0;max-width:360px;font-size:12px;color:var(--muted);
+  }
+
+  .direction-field{
+    width:100%;height:100%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+    text-align:center;font-size:clamp(30px,4vw,58px);line-height:.82;letter-spacing:-.08em;font-weight:800;
+    background:var(--accent);
+  }
+  .direction-card:nth-child(2) .direction-field{background:#e8e5dc}
+  .direction-card:nth-child(3) .direction-field{background:#d7ff3f}
+  .direction-card:nth-child(4) .direction-field{background:#f2efe6}
+  .direction-card:nth-child(5) .direction-field{background:#d8d4c8}
+  .direction-card:nth-child(6) .direction-field{background:#111;color:#f2f0e9}
+  .direction-bottom{min-height:78px;display:flex;flex-direction:column;justify-content:flex-start}
+  .direction-bottom h3{min-height:32px}
+  .direction-bottom p{min-height:34px}
+
+  .experience{
+    border-bottom:1px solid var(--line);
+  }
+  .experience-list{
+    border-left:1px solid var(--line);
+  }
+  .experience-item{
+    display:grid;
+    grid-template-columns:1.1fr 1.25fr 1fr 2fr;
+    gap:22px;
+    min-height:190px;
+    padding:22px 14px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .experience-item:last-child{border-bottom:0}
+  .experience-date{
+    font-size:10px;
+    line-height:1.45;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+  .experience-company{
+    font-size:22px;
+    line-height:.95;
+    letter-spacing:-.06em;
+    font-weight:800;
+  }
+  .experience-role{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+  }
+  .experience-desc{
+    font-size:12px;
+    line-height:1.5;
+    max-width:520px;
+  }
+  @media(max-width:900px){
+    .experience-item{
+      grid-template-columns:1fr 1fr;
+      row-gap:18px;
+    }
+    .experience-desc{grid-column:1 / -1;max-width:none}
+  }
+  @media(max-width:520px){
+    .experience-item{
+      grid-template-columns:1fr;
+      min-height:0;
+    }
+    .experience-desc{grid-column:auto}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="#">MARIA SHILENKOVA</a>
+  <nav>
+    <a href="#work">Areas</a>
+    <a href="#experience">Experience</a><a href="#about">About</a>
+    <a href="https://www.linkedin.com/in/maria-shilenkova/" target="_blank">Contact</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-main">
+    <div class="eyebrow">Motion Designer / Visual Designer / AI Creative</div>
+    <div>
+      <h1>MAKE.<br>MOVE.<br>MATTER.</h1>
+      <p class="hero-copy">Motion graphics, visual design and AI content.</p>
+      <br>
+<a href="https://www.linkedin.com/in/maria-shilenkova/" target="_blank" class="hero-cta">
+  LET'S WORK TOGETHER →
+</a>
+
+<style>
+.hero-cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  width: 100%;
+  height: 88px;
+  margin-top: 16px;
+
+  background: #111111;
+  color: #f2f0e9;
+
+  border: 1px solid #111111;
+
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.hero-cta::before {
+  content: "";
+  position: absolute;
+
+  top: 0;
+  left: -40%;
+
+  width: 25%;
+  height: 100%;
+
+  background: linear-gradient(
+  90deg,
+  transparent,
+  rgba(190, 190, 190, 0.5),
+  transparent
+);
+
+  transform: skewX(-20deg);
+
+  pointer-events: none;
+}
+
+.hero-cta:hover::before {
+  animation: button-shine 0.8s ease-out forwards;
+}
+
+@keyframes button-shine {
+  0% {
+    left: -40%;
+  }
+
+  100% {
+    left: 115%;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-cta {
+    height: 72px;
+    font-size: 15px;
+  }
+}
+</style>
+    </div>
+  </div>
+  <aside class="hero-side">
+    <div class="signal">
+  <img src="assets/ic_rectangle.png" alt="Maria Shilenkova">
+</div>
+    <div class="meta">
+      <div>01<br>MOTION GRAPHICS</div>
+      <div>02<br>VISUAL DESIGN</div>
+      <div>03<br>AI CREATIVE</div>
+      <div>04<br>FREELANCE / FULLTIME</div>
+    </div>
+  </aside>
+</section>
+
+<section id="work">
+  <div class="section-head"><span>Areas of Work /</span></div>
+  <div class="directions">
+<article class="direction-card">
+      <div class="direction-top"><span>01</span></div>
+      <div class="direction-bottom">
+        <h3>MOTION DESIGN</h3>
+        <p>Motion graphics, animation &amp; moving visual systems</p>
+      </div>
+    </article>
+<article class="direction-card">
+      <div class="direction-top"><span>02</span></div>
+      <div class="direction-bottom">
+        <h3>VISUAL DESIGN</h3>
+        <p>Key visuals, digital campaigns &amp; social content</p>
+      </div>
+    </article>
+<article class="direction-card">
+      <div class="direction-top"><span>03</span></div>
+      <div class="direction-bottom">
+        <h3>AI CREATIVE</h3>
+        <p>AI-generated visual concepts &amp; creative production</p>
+      </div>
+    </article>
+<article class="direction-card">
+      <div class="direction-top"><span>04</span></div>
+      <div class="direction-bottom">
+        <h3>MOBILE APPS</h3>
+        <p>Mobile apps, utilities, educational tools &amp; games</p>
+      </div>
+    </article>
+<article class="direction-card">
+      <div class="direction-top"><span>05</span></div>
+      <div class="direction-bottom">
+        <h3>WEB / UI</h3>
+        <p>Web interfaces, digital products &amp; visual systems</p>
+      </div>
+    </article>
+    <article class="direction-card">
+      <div class="direction-top"><span>06</span></div>
+      <div class="direction-bottom">
+        <h3>MANAGEMENT</h3>
+        <p>Resource planning, team coordination &amp; project workload management</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="experience" class="experience">
+  <div class="section-head"><span>Experience /</span></div>
+  <div class="experience-list">
+
+    <article class="experience-item">
+      <div class="experience-date">APR 2025 — PRESENT<br>1 YEAR 6 MONTHS</div>
+      <div class="experience-company">Performance Agency</div>
+      <div class="experience-role">Motion Designer</div>
+      <div class="experience-desc">
+        Full-cycle creation of short advertising videos and banners.<br>
+        Animation of game scenes and characters, final screens, and creative adaptations for different GEOs and formats.<br>
+        Working with references and recreating similar videos.<br>
+        AI-assisted image and video generation with subsequent refinement to final quality.
+      </div>
+    </article>
+
+    <article class="experience-item">
+      <div class="experience-date">FEB 2023 — PRESENT<br>3 YEARS 8 MONTHS</div>
+      <div class="experience-company">Digital Agency</div>
+      <div class="experience-role">Designer</div>
+      <div class="experience-desc">
+        UX/UI design, prototyping and prototype animation, responsive design.<br>
+        Mobile app and simple mobile game design, icons and store banners.<br>
+        Motion design and advertising materials for social media, including HTML5 banners.<br>
+        Infographics, website redesigns, business cards, logos and promotional materials.
+      </div>
+    </article>
+
+    <article class="experience-item">
+      <div class="experience-date">JAN 2022 — AUG 2026<br>4 YEARS 8 MONTHS</div>
+      <div class="experience-company">B2B-center</div>
+      <div class="experience-role">Senior Resource Manager</div>
+      <div class="experience-desc">
+        Resource planning and employee workload management across projects.<br>
+        Employee lifecycle management, recruiting and talent-pool development.<br>
+        Performance evaluation and motivation management, including KPIs and bonuses.<br>
+        Employee development, retention, HR data and documentation management.<br>
+        Feedback collection and coordination between employees, managers and project teams.
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div>
+    <div class="eyebrow">About /</div>
+    <h2>MARIA<br>SHILENKOVA</h2>
+    <p>Motion &amp; Visual Designer with expertise in motion graphics, video creatives and content production using AI.</p>
+  </div>
+  <div class="facts">
+    <div class="fact"><span>Specialization</span><span>Motion / Visual / AI</span></div>
+    <div class="fact"><span>Tools</span><span>Figma · After Effects · Photoshop</span></div>
+    <div class="fact"><span>Tools</span><span>Illustrator · InDesign · Blender 3D</span></div>
+    <div class="fact"><span>Work</span><span>Freelance &amp; Fulltime</span></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>© Made with love.</span>
+  <span>2026</span>
+</footer>
+</div>
+</body>
+</html>
