@@ -41,10 +41,18 @@
   }
   .hero-copy{max-width:620px;font-size:18px;line-height:1.25;margin-top:36px}
   .hero-side{border-left:1px solid var(--line);padding:22px;display:flex;flex-direction:column;justify-content:flex-end}
-  .signal{
-    aspect-ratio:1;border:1px solid var(--line);display:grid;place-items:center;
-    background:var(--accent);font-size:12px;text-align:center;text-transform:uppercase;
-  }
+ .signal{
+  aspect-ratio:1;
+  /* border:1px solid var(--line);
+  overflow:hidden;
+  background:#d0d2de; */
+}
+.signal img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:contain;
+}
   .signal::before{content:"";width:42%;aspect-ratio:1;border:1px solid var(--line);border-radius:50%}
   .meta{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px}
   .meta div{border-top:1px solid var(--line);padding-top:8px}
@@ -303,7 +311,7 @@ section{
     </div>
   </div>
   <aside class="hero-side">
-    <div class="signal">
+    <div>
   <img src="assets/ic_rectangle.png" alt="Maria Shilenkova">
 </div>
     <div class="meta">
