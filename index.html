@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=1440">
 <meta name="description" content="Maria Shilenkova — Motion & Visual Designer focused on advertising creatives, motion graphics and AI-assisted visual production.">
 <title>Maria Shilenkova — Motion & Visual Designer</title>
 
@@ -42,6 +42,7 @@ header{
   position:sticky;
   top:0;
   background:rgba(242,240,233,.94);
+  -webkit-backdrop-filter:blur(10px);
   backdrop-filter:blur(10px);
   z-index:20;
 }
@@ -71,6 +72,7 @@ nav a:hover{text-decoration:underline}
   font-size:11px;
   text-transform:uppercase;
   letter-spacing:.08em;
+  margin-bottom:24px;
 }
 h1{
   margin:0;
@@ -79,6 +81,7 @@ h1{
   line-height:.82;
   letter-spacing:-.09em;
   font-weight:800;
+  overflow-wrap:break-word;
 }
 .hero-copy{
   max-width:720px;
@@ -202,6 +205,7 @@ section{scroll-margin-top:64px}
 .project-grid{
   display:grid;
   grid-template-columns:repeat(12,1fr);
+  align-items:stretch;
   border-left:1px solid var(--line);
 }
 .project{
@@ -210,31 +214,57 @@ section{scroll-margin-top:64px}
   padding:14px;
   border-right:1px solid var(--line);
   border-bottom:1px solid var(--line);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  display:grid;
+  grid-template-rows:auto 360px 1fr;
+  gap:14px;
   background:var(--bg);
   transition:.2s ease;
 }
 .project:hover{background:#fff}
-.project:nth-child(1){grid-column:span 8;min-height:650px}
-.project:nth-child(2){grid-column:span 4;min-height:650px}
+.project:nth-child(1){
+  grid-column:span 8;
+  min-height:650px;
+  grid-template-rows:auto 1fr auto;
+}
+.project:nth-child(2){
+  grid-column:span 4;
+  min-height:650px;
+  grid-template-rows:auto 1fr auto;
+}
+.project:nth-child(1) .project-media,
+.project:nth-child(2) .project-media{
+  height:100%;
+  min-height:0;
+}
 .project:nth-child(3){grid-column:span 4}
 .project:nth-child(4){grid-column:span 4}
 .project:nth-child(5){grid-column:span 4}
 .project:nth-child(6){grid-column:span 6}
 .project:nth-child(7){grid-column:span 6}
+.project.ai{
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+}
+.project.ai .project-media{
+  height:100%;
+  min-height:0;
+}
 
 .project-top{
   display:flex;
   justify-content:space-between;
+  align-items:flex-start;
+  gap:8px;
   font-size:10px;
   color:var(--muted);
   text-transform:uppercase;
+  flex:none;
+  min-height:14px;
 }
+.project-top span:last-child{white-space:nowrap}
 .project-media{
   width:100%;
-  aspect-ratio:16/10;
+  height:360px;
   border:1px solid var(--line);
   background:#dedbd0;
   display:flex;
@@ -246,6 +276,10 @@ section{scroll-margin-top:64px}
   width:100%;
   height:100%;
   object-fit:cover;
+  transition:transform .35s ease;
+}
+.project:hover .project-media img{
+  transform:scale(1.025);
 }
 .project-media.placeholder{
   background:var(--accent);
@@ -267,19 +301,24 @@ section{scroll-margin-top:64px}
 .project-bottom{
   border-top:1px solid var(--line);
   padding-top:12px;
-  margin-top:14px;
+  display:grid;
+  grid-template-rows:auto auto 1fr auto;
+  gap:0;
+  align-content:start;
 }
 .project-title{
   margin:0;
   font-size:clamp(25px,3vw,40px);
   line-height:.9;
   letter-spacing:-.07em;
+  align-self:start;
 }
 .project-meta{
   display:flex;
   flex-wrap:wrap;
   gap:6px;
   margin-top:12px;
+  align-self:start;
 }
 .tag{
   border:1px solid var(--line);
@@ -292,7 +331,19 @@ section{scroll-margin-top:64px}
   margin:12px 0 0;
   font-size:12px;
   color:var(--muted);
+  align-self:start;
 }
+
+.project-link{
+  display:inline-block;
+  margin-top:14px;
+  font-size:10px;
+  text-transform:uppercase;
+  align-self:end;
+  justify-self:start;
+}
+.project-link:hover{text-decoration:underline}
+
 
 /* DIRECTIONS */
 .directions{
@@ -306,7 +357,7 @@ section{scroll-margin-top:64px}
   border-right:1px solid var(--line);
   border-bottom:1px solid var(--line);
   display:grid;
-  grid-template-rows:24px 1fr auto;
+  grid-template-rows:24px 240px auto;
   gap:14px;
   transition:.2s ease;
 }
@@ -324,6 +375,7 @@ section{scroll-margin-top:64px}
 .direction-field{
   width:100%;
   height:100%;
+  min-height:200px;
   border:1px solid var(--line);
   display:flex;
   align-items:center;
@@ -438,8 +490,13 @@ section{scroll-margin-top:64px}
   grid-template-columns:1fr 1fr;
   border-bottom:1px solid var(--line);
 }
-.about > div{padding:22px}
-.about > div+div{border-left:1px solid var(--line)}
+.about > div:not(.section-head){padding:22px}
+
+.about > .section-head{
+  grid-column:1 / -1;
+  padding:9px 0;
+}
+.about > .about-side{border-left:1px solid var(--line)}
 .about h2{
   font-size:clamp(48px,7vw,100px);
   line-height:.82;
@@ -452,7 +509,7 @@ section{scroll-margin-top:64px}
 }
 .facts{
   display:grid;
-  align-content:end;
+  margin-top:40px;
 }
 .fact{
   border-top:1px solid var(--line);
@@ -463,19 +520,56 @@ section{scroll-margin-top:64px}
   font-size:11px;
 }
 .fact span:last-child{text-align:right}
-.about-links{
-  margin-top:32px;
+
+
+/* ABOUT — right column with facts + archive */
+.about-side{
   display:flex;
-  flex-wrap:wrap;
-  gap:8px;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:26px;
 }
-.about-link{
-  border:1px solid var(--line);
-  padding:10px 12px;
+
+.about-archive{
+  padding-top:14px;
+}
+.about-archive-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
   text-transform:uppercase;
   font-size:10px;
+  color:var(--muted);
+  margin-bottom:10px;
 }
-.about-link:hover{background:var(--ink);color:var(--bg)}
+.about-archive-copy{
+  font-size:12px;
+  color:var(--muted);
+  margin:0 0 14px;
+  max-width:520px;
+}
+.archive-links{padding:0}
+.archive-links a{
+  min-height:52px;
+  padding:10px 0;
+  display:grid;
+  grid-template-columns:32px 1fr;
+  align-items:center;
+  border-top:1px solid var(--line);
+  transition:.2s ease;
+}
+.archive-links a:last-child{border-bottom:1px solid var(--line)}
+.archive-links a:hover{background:var(--ink);color:var(--bg);padding-left:10px}
+.archive-links a:hover span{color:var(--bg)}
+.archive-links span{
+  font-size:10px;
+  color:var(--muted);
+}
+.archive-links strong{
+  font-size:clamp(14px,1.4vw,18px);
+  letter-spacing:-.03em;
+  font-weight:800;
+}
 
 /* CONTACT */
 .contact{
@@ -520,6 +614,16 @@ footer{
   color:var(--muted);
 }
 
+/* FOCUS */
+nav a:focus-visible,
+.project-link:focus-visible,
+.contact-link:focus-visible,
+.hero-cta:focus-visible,
+.archive-links a:focus-visible{
+  outline:2px solid var(--ink);
+  outline-offset:3px;
+}
+
 /* RESPONSIVE */
 @media(max-width:1000px){
   .hero{grid-template-columns:1fr}
@@ -530,45 +634,115 @@ footer{
   }
   .project:nth-child(n){
     grid-column:span 6;
+    grid-template-rows:auto 360px 1fr;
+    min-height:560px;
   }
   .project:nth-child(1){grid-column:span 12}
+  .project:nth-child(1) .project-media,
+  .project:nth-child(2) .project-media{
+    height:360px;
+    min-height:0;
+  }
+  .project.ai{
+    grid-template-rows:auto 360px 1fr;
+  }
   .process-grid{grid-template-columns:repeat(2,1fr)}
   .experience-item{
     grid-template-columns:1fr 1fr;
     row-gap:18px;
+    min-height:0;
+    padding:18px 14px;
   }
   .experience-desc{grid-column:1/-1}
 }
 
 @media(max-width:700px){
   .wrap{padding:0 12px}
-  header{height:auto;min-height:60px}
-  nav{gap:10px;font-size:9px}
-  .brand{font-size:11px}
-  h1{font-size:20vw}
+
+  header{
+    flex-wrap:wrap;
+    height:auto;
+    min-height:60px;
+    padding:10px 0;
+    gap:8px;
+  }
+  .brand{font-size:11px;width:100%}
+  nav{
+    width:100%;
+    justify-content:space-between;
+    gap:6px;
+    font-size:9px;
+  }
+  nav a{white-space:nowrap}
+
+  h1{font-size:16vw;margin-bottom:28px}
   .hero-main{padding-top:48px}
+  .eyebrow{margin-bottom:32px}
   .hero-copy{font-size:17px}
   .hero-side{min-height:350px}
+
   .work-intro,
   .about,
   .contact{grid-template-columns:1fr}
   .work-intro > div+div,
-  .about > div+div,
+  .about > .about-side,
   .contact-side{
     border-left:0;
     border-top:1px solid var(--line);
   }
-  .project:nth-child(n){grid-column:span 12}
-  .project{min-height:480px!important}
+
+  .project:nth-child(n){
+    grid-column:span 12;
+    grid-template-rows:auto 280px 1fr;
+    min-height:480px!important;
+  }
+  .project:nth-child(1) .project-media,
+  .project:nth-child(2) .project-media,
+  .project.ai .project-media,
+  .project-media{
+    height:280px;
+    min-height:0;
+  }
+
   .directions{grid-template-columns:1fr}
+  .direction-field{
+    padding:14px;
+    font-size:clamp(28px,8vw,48px);
+  }
+
   .process-grid{grid-template-columns:1fr}
+
   .experience-item{
     grid-template-columns:1fr;
     min-height:0;
   }
   .experience-desc{grid-column:auto}
+  .experience-note{font-size:12px}
+
   .contact-main{padding:40px 12px}
   .contact-main h2{font-size:20vw}
+
+  .about > div:not(.section-head){padding:14px}
+  .about-side{gap:20px}
+  .archive-links a{grid-template-columns:28px 1fr}
+  .fact{
+    flex-direction:column;
+    gap:4px;
+    align-items:flex-start;
+  }
+  .fact span:last-child{text-align:left}
+}
+
+@media(max-width:380px){
+  nav a:nth-child(3),
+  nav a:nth-child(4){display:none}
+  h1{font-size:14vw}
+}
+
+/* REDUCED MOTION */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
 }
 </style>
 </head>
@@ -599,8 +773,7 @@ footer{
       <h1>MAKE.<br>MOVE.<br>MATTER.</h1>
 
       <p class="hero-copy">
-        <strong>Motion design, advertising creatives & AI-assisted visual production.</strong><br>
-        I create production-ready visual content across video, digital design and mobile products.
+        I create production-ready video, digital and mobile visuals - from brief to final delivery, with AI built into the workflow.
       </p>
 
       <a href="#work" class="hero-cta">VIEW SELECTED WORK ↓</a>
@@ -609,7 +782,7 @@ footer{
 
  <aside class="hero-side">
   <div class="hero-visual">
-    <img src="assets/ic_rectangle.png" alt="Maria Shilenkova — selected work">
+    <img src="assets/ic_rectangle.jpg" alt="Maria Shilenkova — featured visual" width="800" height="800">
   </div>
 
 
@@ -645,200 +818,108 @@ footer{
     </div>
   </div>
 
-  <div class="project-grid">
+ <div class="project-grid">
 
-    <!-- PROJECT 01 -->
-    <article class="project">
-      <div class="project-top">
-        <span>01 / FEATURED</span>
-        <span>Motion · Advertising</span>
-      </div>
+    <article class="project featured">
+      <div class="project-top"><span>01 / FEATURED</span><span>Motion · Showreel</span></div>
+   
+      <a class="project-media" href="https://www.behance.net/gallery/255360973/SHOWREEL" target="_blank" rel="noopener">
+        <img src="assets/title_1.png" alt="Showreel preview" loading="lazy" width="1200" height="750">
 
-      <div class="project-media placeholder">
-        MOBILE<br>GAME<br>CREATIVES
-      </div>
+      </a>
 
       <div class="project-bottom">
-        <h3 class="project-title">Mobile Game Creatives</h3>
+        <h3 class="project-title">SHOWREEL</h3>
         <div class="project-meta">
-          <span class="tag">Motion</span>
-          <span class="tag">Advertising</span>
-          <span class="tag">Characters</span>
-          <span class="tag">Final Screens</span>
-          <span class="tag">GEO Adaptation</span>
+          <span class="tag">Showreel</span><span class="tag">Motion Design</span>
+          <span class="tag">Video</span><span class="tag">Compilation</span>
         </div>
         <p class="project-description">
-          Short-form advertising creatives, animated game scenes, characters,
-          final screens and adaptations across formats and GEOs.
+          A compiled showreel showcasing a range of motion design work, animation and visual production. 
         </p>
+        
+        <a class="project-link" href="https://www.behance.net/gallery/255360973/SHOWREEL" target="_blank" rel="noopener">Open project ↗</a>
       </div>
     </article>
 
+    <article class="project ai">
+      <div class="project-top"><span>02</span><span>AI · Visual</span></div>
 
-    <!-- PROJECT 02 -->
-    <article class="project">
-      <div class="project-top">
-        <span>02</span>
-        <span>AI · Video</span>
-      </div>
-
-      <div class="project-media placeholder">
-        AI<br>VIDEO<br>PRODUCTION
-      </div>
+      <a class="project-media" href="https://www.behance.net/gallery/254978797/koncept-nejrofotosessii-AI-content" target="_blank" rel="noopener">
+        <img src="assets/title_2.png" alt="AI Content preview" loading="lazy" width="1200" height="750">
+      </a>
 
       <div class="project-bottom">
-        <h3 class="project-title">AI Video Production</h3>
+        <h3 class="project-title">AI Content</h3>
         <div class="project-meta">
-          <span class="tag">AI Video</span>
-          <span class="tag">Generation</span>
-          <span class="tag">Motion</span>
-          <span class="tag">Post</span>
+          <span class="tag">AI Creative</span><span class="tag">Visual Concept</span><span class="tag">Image Generation</span>
         </div>
         <p class="project-description">
-          AI-generated image and video content refined into production-ready
-          creative assets.
+          Concept neural photoshoot / AI content. A clear example of AI-assisted visual creation.
         </p>
+      
+        <a class="project-link" href="https://www.behance.net/gallery/254978797/koncept-nejrofotosessii-AI-content" target="_blank" rel="noopener">Open project ↗</a>
       </div>
     </article>
 
-
-    <!-- PROJECT 03 -->
     <article class="project">
-      <div class="project-top">
-        <span>03</span>
-        <span>Motion · Performance</span>
-      </div>
-
-      <div class="project-media placeholder">
-        PERFORMANCE<br>ADS
-      </div>
-
+      <div class="project-top"><span>03</span><span>AI · Video</span></div>
+      <a class="project-media" href="https://vimeo.com/reviews/3bab253b-ee65-4680-a207-2acc72c60cb3/videos/1231227970" target="_blank" rel="noopener">
+        <img src="assets/title_3.png" alt="AI Avatars preview" loading="lazy" width="1200" height="750">
+      </a>
       <div class="project-bottom">
-        <h3 class="project-title">Performance Advertising</h3>
+        <h3 class="project-title">AI Avatars</h3>
         <div class="project-meta">
-          <span class="tag">Video</span>
-          <span class="tag">Social</span>
-          <span class="tag">Banners</span>
-          <span class="tag">HTML5</span>
+          <span class="tag">AI Creative</span><span class="tag">Lip Sync</span><span class="tag">Voiceover</span><span class="tag">Animation</span>
         </div>
         <p class="project-description">
-          Commercial short-form video and digital advertising assets built
-          for multiple placements and campaign requirements.
+          AI avatars brought to life with voiceover and lip-sync animation, created as part of an AI-assisted production workflow.
         </p>
+       
+        <a class="project-link" href="https://vimeo.com/reviews/3bab253b-ee65-4680-a207-2acc72c60cb3/videos/1231227970" target="_blank" rel="noopener">Watch an example ↗</a>
       </div>
     </article>
 
-
-    <!-- PROJECT 04 -->
     <article class="project">
-      <div class="project-top">
-        <span>04</span>
-        <span>Visual · Mobile</span>
-      </div>
-
-      <div class="project-media placeholder">
-        MOBILE<br>PRODUCT
-      </div>
-
+      <div class="project-top"><span>04</span><span>Digital · Mobile</span></div>
+      <a class="project-media" href="https://play.google.com/store/apps/details?id=com.shilenkov.irregular_verbs&hl=en" target="_blank" rel="noopener">
+        <img src="assets/title_4.png" alt="Mobile App Design preview" loading="lazy" width="1200" height="750">
+      </a>
       <div class="project-bottom">
-        <h3 class="project-title">Mobile Apps & Games</h3>
+        <h3 class="project-title">Mobile App Design</h3>
         <div class="project-meta">
-          <span class="tag">UX/UI</span>
-          <span class="tag">Figma</span>
-          <span class="tag">Mobile</span>
-          <span class="tag">Store Assets</span>
+          <span class="tag">Mobile App</span><span class="tag">UI/UX</span><span class="tag">Product Design</span><span class="tag">Figma</span>
         </div>
         <p class="project-description">
-          Mobile interfaces, simple games, icons, store visuals and animated
-          prototypes.
+          Mobile application design covering UI/UX, interface structure and product design.
         </p>
+  
+       
+        <a class="project-link" href="https://play.google.com/store/apps/details?id=com.shilenkov.irregular_verbs&hl=en" target="_blank" rel="noopener">Available here ↗</a>
       </div>
     </article>
 
-
-    <!-- PROJECT 05 -->
     <article class="project">
-      <div class="project-top">
-        <span>05</span>
-        <span>Visual · Digital</span>
-      </div>
-
-      <div class="project-media placeholder">
-        DIGITAL<br>VISUAL<br>SYSTEM
-      </div>
-
+      <div class="project-top"><span>05</span><span>Digital · Product</span></div>
+      <a class="project-media" href="https://maria-shilenkova.github.io/" target="_blank" rel="noopener">
+        <img src="assets/title_5.png" alt="CONTEXTLY preview" loading="lazy" width="1200" height="750">
+      </a>
       <div class="project-bottom">
-        <h3 class="project-title">Digital Visual Design</h3>
+        <h3 class="project-title">CONTEXTLY</h3>
         <div class="project-meta">
-          <span class="tag">Web</span>
-          <span class="tag">UI</span>
-          <span class="tag">Social</span>
-          <span class="tag">Campaigns</span>
+          <span class="tag">Digital Product</span><span class="tag">UI</span><span class="tag">Visual System</span>
         </div>
         <p class="project-description">
-          Digital interfaces, campaign visuals, social media materials,
-          infographics and responsive visual systems.
+          A digital product concept presented as a focused visual system, supporting the portfolio's web and product-design direction.
         </p>
-      </div>
-    </article>
 
-
-    <!-- PROJECT 06 -->
-    <article class="project">
-      <div class="project-top">
-        <span>06</span>
-        <span>AI · Creative</span>
-      </div>
-
-      <div class="project-media placeholder">
-        AI<br>CREATIVE<br>PIPELINE
-      </div>
-
-      <div class="project-bottom">
-        <h3 class="project-title">AI Creative Pipeline</h3>
-        <div class="project-meta">
-          <span class="tag">Kling</span>
-          <span class="tag">Higgsfield</span>
-          <span class="tag">ElevenLabs</span>
-          <span class="tag">Compositing</span>
-        </div>
-        <p class="project-description">
-          From concept and generation to animation, voice, compositing and
-          final creative delivery.
-        </p>
-      </div>
-    </article>
-
-
-    <!-- PROJECT 07 -->
-    <article class="project">
-      <div class="project-top">
-        <span>07</span>
-        <span>Visual · Branding</span>
-      </div>
-
-      <div class="project-media placeholder">
-        BRAND<br>&<br>CAMPAIGN
-      </div>
-
-      <div class="project-bottom">
-        <h3 class="project-title">Brand & Campaign Design</h3>
-        <div class="project-meta">
-          <span class="tag">Identity</span>
-          <span class="tag">Key Visual</span>
-          <span class="tag">Social</span>
-          <span class="tag">Promo</span>
-        </div>
-        <p class="project-description">
-          Logos, key visuals, promotional materials and supporting digital
-          campaign assets.
-        </p>
+      
+        <a class="project-link" href="https://maria-shilenkova.github.io/" target="_blank" rel="noopener">Available here ↗</a>
       </div>
     </article>
 
   </div>
 </section>
-
 
 <!-- AREAS -->
 <section id="areas">
@@ -875,7 +956,6 @@ footer{
           Digital campaigns, social content, key visuals, branding,
           interfaces and visual systems.
         </p>
-        <br>
       </div>
     </article>
 
@@ -890,13 +970,11 @@ footer{
           AI-generated image and video content integrated into a real
           creative-production workflow.
         </p>
-        <br>
       </div>
     </article>
 
   </div>
 </section>
-
 
 <!-- PROCESS -->
 <section id="process">
@@ -935,7 +1013,6 @@ footer{
 
   </div>
 </section>
-
 
 <!-- EXPERIENCE -->
 <section id="experience">
@@ -1028,57 +1105,67 @@ footer{
 
 <!-- ABOUT -->
 <section id="about" class="about">
+ <br>
+  <div class="section-head">
+    <span>About /</span>
+    <span>Profile</span>
+  </div>
 
   <div>
-    <div class="eyebrow">About /</div>
- <br>
     <h2>MARIA<br>SHILENKOVA</h2>
 
     <p>
       Motion & Visual Designer focused on advertising creatives,
       motion graphics and AI-assisted visual production.
-      I work across video, digital design and mobile products,
-      combining design, animation and AI tools to create
-      production-ready visual content.
+      I work across video, digital design and mobile products, combining visual design, animation and AI-assisted production to create production-ready content.
     </p>
 
-    <div class="about-links">
-      <a class="about-link" href="https://www.behance.net/cca13e2a/projects" target="_blank" rel="noopener">Behance ↗</a>
-      <a class="about-link" href="https://vimeo.com/user207353099" target="_blank" rel="noopener">Vimeo ↗</a>
+    <div class="facts">
+      <div class="fact">
+        <span>Specialization</span>
+        <span>Motion / Visual Design / AI Creative</span>
+      </div>
+      <div class="fact">
+        <span>Motion Tools</span>
+        <span>After Effects / Blender 3D / HTML5</span>
+      </div>
+      <div class="fact">
+        <span>Design Tools</span>
+        <span>Figma / Photoshop / Illustrator</span>
+      </div>
+      <div class="fact">
+        <span>AI Creative Tools</span>
+        <span>Higgsfield / SYNTX / ElevenLabs / Sync Labs / VEED.IO</span>
+      </div>
+      <div class="fact">
+        <span>Work format</span>
+        <span>Remote / Freelance / Full-time</span>
+      </div>
     </div>
   </div>
 
+  <div class="about-side">
+    <div class="about-archive">
 
-  <div class="facts">
-
-    <div class="fact">
-      <span>Specialization</span>
-      <span>Motion / Visual / AI</span>
+      <p>
+        Want more? The archives hold experiments, extended examples and supporting work.
+      </p>
+      <br>
+      <div class="archive-links">
+        <a href="https://vimeo.com/user207353099" target="_blank" rel="noopener">
+          <span>01</span><strong>Vimeo / Motion Archive ↗</strong>
+        </a>
+        <a href="https://drive.google.com/drive/folders/17KPDoxvFAuxJe7ihzdu1JFaJwUQX6Bny" target="_blank" rel="noopener">
+          <span>02</span><strong>Google Drive / Extended Work ↗</strong>
+        </a>
+        <a href="https://www.behance.net/cca13e2a/projects" target="_blank" rel="noopener">
+          <span>03</span><strong>Behance / Full Project Archive ↗</strong>
+        </a>
+      </div>
     </div>
-
-    <div class="fact">
-      <span>Motion Tools</span>
-      <span>After Effects / Blender 3D / HTML5</span>
-    </div>
-
-    <div class="fact">
-      <span>Design Tools</span>
-      <span>Figma / Photoshop / Illustrator</span>
-    </div>
-
-    <div class="fact">
-      <span>AI Creative Tools</span>
-      <span>Higgsfield / ElevenLabs / Sync Labs / VEED.IO</span>
-    </div>
-
-    <div class="fact">
-      <span>Work format</span>
-      <span>Remote / Freelance / Full-time</span>
-    </div>
-
   </div>
+
 </section>
-
 
 <!-- CONTACT -->
 <section id="contact" class="contact">
